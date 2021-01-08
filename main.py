@@ -51,7 +51,9 @@ async def arena(ctx,arg):
     user = ctx.author
     await create_account(user)
     hp1 = rpgdata.execute("select health from rpgdb where userID=?", (user.id,)).fetchone()
-    hp = ''.join(c for c in hp1 if c.isdigit())
+    hp2 = str(hp1)
+    hp3 = ''.join(c for c in hp2 if c.isdigit())
+    hp = int(hp3)
     dmg = rpgdata.execute("select damage from rpgdb where userID=?", (user.id,)).fetchone()
     defense = rpgdata.execute("select armor from rpgdb where userID=?", (user.id,))
     dodge = rpgdata.execute("select evasion from rpgdb where userID=?",  (user.id,))
