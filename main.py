@@ -60,7 +60,7 @@ async def arena(ctx,arg):
     enemystats.add_field(name = f"health: {enemyhp}", value = f"damage:{enemydmg}")
     await ctx.send(embed = enemystats)
     userstats = discord.Embed(title = user.name, color = discord.Color.red())
-    enemystats.add_field(name = f"health: {hp}", value = f"damage:{dmg}")
+    enemystats.add_field(name = hp, value = dmg)
     await ctx.send(embed = userstats)
     
 async def create_account(user):
