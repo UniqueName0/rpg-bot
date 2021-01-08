@@ -34,8 +34,8 @@ async def stats(ctx):
     user = ctx.author
     await create_account(user)
     em = discord.Embed(title = f"{ctx.author.name}'s stats", color = discord.Color.red())
-    em.add_field(name = "gold", value = rpgdata.execute("SELECT gold FROM rpgdb WHERE userID = ?", (user.id,)).fetchone().replace(",", "")
-    em.add_field(name = "level", value = rpgdata.execute("SELECT level FROM rpgdb WHERE userID = ?", (user.id,)).fetchone()
+    em.add_field(name = "gold", value = rpgdata.execute("SELECT gold FROM rpgdb WHERE userID = ?", (user.id,)).fetchone().replace(",", ""))
+    em.add_field(name = "level", value = rpgdata.execute("SELECT level FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     await ctx.send(embed = em)
 
     
