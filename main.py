@@ -36,6 +36,14 @@ async def stats(ctx):
     em = discord.Embed(title = f"{ctx.author.name}'s stats", color = discord.Color.red())
     em.add_field(name = "gold", value = rpgdata.execute("SELECT gold FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     em.add_field(name = "level", value = rpgdata.execute("SELECT level FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "xp needed for level up", value = rpgdata.execute("SELECT xp_needed FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "hp_potions", value = rpgdata.execute("SELECT hp_potions FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "weapon", value = rpgdata.execute("SELECT weapon FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "weapon level", value = rpgdata.execute("SELECT weapon_level FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "health", value = rpgdata.execute("SELECT health FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "damage", value = rpgdata.execute("SELECT damage FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "armor", value = rpgdata.execute("SELECT armor FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "evasion", value = rpgdata.execute("SELECT evasion FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     await ctx.send(embed = em)
 
     
