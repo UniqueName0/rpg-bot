@@ -37,7 +37,7 @@ async def stats(ctx):
     em.add_field(name = "gold", value = rpgdata.execute("SELECT gold FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     em.add_field(name = "level", value = rpgdata.execute("SELECT level FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     em.add_field(name = "xp needed for level up", value = rpgdata.execute("SELECT xp_needed FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
-    em.add_field(name = "hp_potions", value = rpgdata.execute("SELECT hp_potions FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
+    em.add_field(name = "hp potions", value = rpgdata.execute("SELECT hp_potions FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     em.add_field(name = "weapon", value = rpgdata.execute("SELECT weapon FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     em.add_field(name = "weapon level", value = rpgdata.execute("SELECT weapon_level FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     em.add_field(name = "health", value = rpgdata.execute("SELECT health FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
@@ -52,6 +52,10 @@ async def arena(ctx,arg):
     await create_account(user)
     hp = rpgdata.execute("select health from rpgdb where userID=?", (user.id,))
     dmg = rpgdata.execute("select damage from rpgdb where userID=?", (user.id,))
+    defense = rpgdata.execute("select armor from rpgdb where userID=?", (user.id,))
+    dodge = rpgdata.execute("select evasion from rpgdb where userID=?",  (user.id,))
+    enemyhp = arg * 25
+    enemydmg = arg * 5
 
 async def create_account(user):
     if rpgdata.execute("SELECT 1 FROM rpgdb WHERE userID = ?", (user.id,)).fetchone():
