@@ -50,14 +50,14 @@ async def stats(ctx):
 async def arena(ctx,arg):
     user = ctx.author
     await create_account(user)
-    hp = int(rpgdata.execute("select health from rpgdb where userID=?", (user.id,)))
-    dmg = int(rpgdata.execute("select damage from rpgdb where userID=?", (user.id,)))
+    hp = int(rpgdata.execute("select health from rpgdb where userID=?", (user.id,)).fetchone())
+    dmg = int(rpgdata.execute("select damage from rpgdb where userID=?", (user.id,)).fetchone())
     defense = rpgdata.execute("select armor from rpgdb where userID=?", (user.id,))
     dodge = rpgdata.execute("select evasion from rpgdb where userID=?",  (user.id,))
     enemyhp = 25*int(arg)
     enemydmg = 5*int(arg)
     enemystats = discord.Embed(title = "enemy", color = discord.Color.red())
-    enemystats.add_field(name = enemyhp, value = enemydmg)
+    enemystats.add_field(name = f"health: {enemyhp}", value = f"damage: {enemydmg}")
     await ctx.send(embed = enemystats)
     userstats = discord.Embed(title = user.name, color = discord.Color.red())
     userstats.add_field(name = f"health: {hp}", value = f"damage: {dmg}")
