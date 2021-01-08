@@ -57,7 +57,7 @@ async def arena(ctx,arg):
     enemyhp = 25*arg
     enemydmg = 5*arg
     enemystats = discord.Embed(title = "enemy", color = discord.Color.red())
-    enemystats.add_field(name = f"health: {enemyhp}", value = f"damage:{enemydmg}")
+    enemystats.add_field(name = enemyhp, value = enemydmg)
     await ctx.send(embed = enemystats)
     userstats = discord.Embed(title = user.name, color = discord.Color.red())
     enemystats.add_field(name = hp, value = dmg)
