@@ -50,8 +50,8 @@ async def stats(ctx):
 async def arena(ctx,arg):
     user = ctx.author
     await create_account(user)
-    hp = rpgdata.execute("select health from rpgdb where userID=?", (user.id,))
-    dmg = rpgdata.execute("select damage from rpgdb where userID=?", (user.id,))
+    hp = int(rpgdata.execute("select health from rpgdb where userID=?", (user.id,)))
+    dmg = int(rpgdata.execute("select damage from rpgdb where userID=?", (user.id,)))
     defense = rpgdata.execute("select armor from rpgdb where userID=?", (user.id,))
     dodge = rpgdata.execute("select evasion from rpgdb where userID=?",  (user.id,))
     enemyhp = 25*int(arg)
@@ -60,8 +60,16 @@ async def arena(ctx,arg):
     enemystats.add_field(name = enemyhp, value = enemydmg)
     await ctx.send(embed = enemystats)
     userstats = discord.Embed(title = user.name, color = discord.Color.red())
-    userstats.add_field(name = f"health: {int(hp)}", value = f"damage: {int(dmg)}")
+    userstats.add_field(name = f"health: {hp}", value = f"damage: {dmg}")
     await ctx.send(embed = userstats)
+    #check = reaction_check(message=msg, author=ctx.author, emoji=(emoji1, emoji2))
+    #try: 
+     #   reaction, user = await self.client.wait_for('reaction_add', timeout=10.0, check=check)
+      #  if reaction.emoji == emoji1:
+       # 
+        #elif reaction.emoji == emoji2:
+        
+    #except TimeoutError:
     
 async def create_account(user):
     if rpgdata.execute("SELECT 1 FROM rpgdb WHERE userID = ?", (user.id,)).fetchone():
