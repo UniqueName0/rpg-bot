@@ -30,13 +30,21 @@ async def on_ready():
 async def help(ctx):
     await ctx.send(helptext)
 
-    
+@bot.command()
+async def stats(ctx):
+    user = ctx.author
+    await create_account()
+    em = discord.Embed(title = f"{ctx.author.name}'s stats", color = discord.Color.red())
+    em.add_field(name = "gold", value = rpgdata.execute("SELECT gold FROM rpgdb WHERE userID = ?", user.id).fetchone())
+    await ctx.send(embed = em)
+
+
 async def create_account:
-    if c.execute("SELECT 1 FROM rpgdb WHERE userID = ?", user.id).fetchone():
+    if rpgdata.execute("SELECT 1 FROM rpgdb WHERE userID = ?", user.id).fetchone():
         return False
     else:
         rpgdata.execute("INSERT INTO rpgdb VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", user.id, 100, 1, 100, 5, "sword", 1, 100, 20, 5, 5)   
         conn.commit()
     
-    
+   
 bot.run(token)
