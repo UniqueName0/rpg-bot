@@ -56,7 +56,7 @@ async def arena(ctx,arg):
     dodge = rpgdata.execute("select evasion from rpgdb where userID=?",  (user.id,))
     enemyhp = arg * 25
     enemydmg = arg * 5
-    enemystats = discord.Embed(title = enemy", color = discord.Color.red())
+    enemystats = discord.Embed(title = "enemy", color = discord.Color.red())
     enemystats.add_field(name = f"health: {enemyhp}", value = f"damage:{enemydmg}")
     await ctx.send(embed = enemystats)
     userstats = discord.Embed(title = user.name, color = discord.Color.red())
