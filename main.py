@@ -50,8 +50,8 @@ async def stats(ctx):
 async def arena(ctx,arg):
     user = ctx.author
     await create_account(user)
-    hp = int(rpgdata.execute("select health from rpgdb where userID=?", (user.id,)).fetchone())
-    dmg = int(rpgdata.execute("select damage from rpgdb where userID=?", (user.id,)).fetchone())
+    hp = rpgdata.execute("select health from rpgdb where userID=?", (user.id,)).fetchone()
+    dmg = rpgdata.execute("select damage from rpgdb where userID=?", (user.id,)).fetchone()
     defense = rpgdata.execute("select armor from rpgdb where userID=?", (user.id,))
     dodge = rpgdata.execute("select evasion from rpgdb where userID=?",  (user.id,))
     enemyhp = 25*int(arg)
