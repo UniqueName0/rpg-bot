@@ -56,7 +56,13 @@ async def arena(ctx,arg):
     dodge = rpgdata.execute("select evasion from rpgdb where userID=?",  (user.id,))
     enemyhp = arg * 25
     enemydmg = arg * 5
-
+    enemystats = discord.Embed(title = enemy", color = discord.Color.red())
+    enemystats.add_field(name = f"health: {enemyhp}", value = f"damage:{enemydmg}")
+    await ctx.send(embed = enemystats)
+    userstats = discord.Embed(title = user.name, color = discord.Color.red())
+    enemystats.add_field(name = f"health: {hp}", value = f"damage:{dmg} /n dodge chance: {dodge}% /n defense(damage reduction): {defense}%")
+    await ctx.send(embed = userstats)
+    
 async def create_account(user):
     if rpgdata.execute("SELECT 1 FROM rpgdb WHERE userID = ?", (user.id,)).fetchone():
         return False
