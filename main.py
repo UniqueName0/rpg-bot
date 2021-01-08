@@ -39,10 +39,11 @@ async def stats(ctx):
 
 
 async def create_account(user):
+    startingstats = [(user.id, 100, 1, 100, 5, "sword", 1, 100, 20, 5, 5)]
     if rpgdata.execute("SELECT 1 FROM rpgdb WHERE userID = ?", (user.id,)).fetchone():
         return False
     else:
-        rpgdata.execute("INSERT INTO rpgdb VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", user.id, 100, 1, 100, 5, "sword", 1, 100, 20, 5, 5)   
+        rpgdata.execute("INSERT INTO rpgdb VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", startingstats)   
         conn.commit()
     
    
