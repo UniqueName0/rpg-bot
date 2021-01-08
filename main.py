@@ -38,7 +38,7 @@ async def stats(ctx):
     await ctx.send(embed = em)
 
 
-async def create_account():
+async def create_account(user):
     if rpgdata.execute("SELECT 1 FROM rpgdb WHERE userID = ?", user.id).fetchone():
         return False
     else:
