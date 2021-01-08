@@ -46,9 +46,12 @@ async def stats(ctx):
     em.add_field(name = "evasion", value = rpgdata.execute("SELECT evasion FROM rpgdb WHERE userID = ?", (user.id,)).fetchone())
     await ctx.send(embed = em)
 
-    
-    
-    ugold = gold.translate({ord(c): None for c in '!@#$'})
+@bot.command()
+async def arena(ctx,arg):
+    user = ctx.author
+    await create_account(user)
+    hp = rpgdata.execute("select health from rpgdb where userID=?", (user.id,))
+    dmg = rpgdata.execute("select damage from rpgdb where userID=?", (user.id,))
 
 async def create_account(user):
     if rpgdata.execute("SELECT 1 FROM rpgdb WHERE userID = ?", (user.id,)).fetchone():
