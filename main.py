@@ -11,7 +11,7 @@ helptext = open('help.txt', 'r').read()
 
 rpgdata = conn.cursor()
 rpgdata.execute('''CREATE TABLE IF NOT EXISTS rpgdb (userID, gold, level, xp_needed, hp_potions, weapon, weapon_level, health, damage, armor, evasion)''')
-    conn.commit()
+conn.commit()
 
 bot = commands.Bot(command_prefix='-')
 
