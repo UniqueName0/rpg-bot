@@ -1,1 +1,3 @@
-this is the help menu, more will be added later
+stats - shows player's stats
+
+arena (difficulty, low numbers = easy, high numbers = hard) - fights an enemy with the strength based on the difficulty number you enter
